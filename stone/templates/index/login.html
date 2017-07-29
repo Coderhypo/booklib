@@ -1,0 +1,27 @@
+{% extends "index_base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div class="mdui-row">
+    <div class="mdui-col-md-4 mdui-col-offset-md-4">
+        <h1>Login</h1>
+    </div>
+    <div class="mdui-col-md-4 mdui-col-offset-md-4">
+        <form method="POST" action="/register">
+            <div class="mdui-textfield mdui-textfield-floating-label">
+                {{ form.email.label(class="mdui-textfield-label") }}
+                {{ form.email(class="mdui-textfield-input") }}
+            </div>
+            <div class="mdui-textfield mdui-textfield-floating-label">
+                {{ form.password.label(class="mdui-textfield-label") }}
+                {{ form.password(class="mdui-textfield-input") }}
+            </div>
+            <div class="mdui-col" style="padding: 40px 0">
+                <button class="mdui-btn mdui-btn-block mdui-btn-raised mdui-color-blue-a200 mdui-ripple">
+                    Login
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
