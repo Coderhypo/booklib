@@ -27,7 +27,6 @@ class __BaseClient(requests.Session):
 
         if code // 100 != 2:
             raise ClientError(
-                "douban_client",
                 "can't get a response: status code {}".format(code), 500)
         return rsp.content
 
@@ -38,14 +37,13 @@ class __BaseClient(requests.Session):
 
         if code // 100 != 2:
             raise ClientError(
-                "douban_client",
                 "can't get a response: status code {}".format(code), 500)
         if json:
             return rsp.json()
         return rsp.text
 
 
-class DouCLinet(__BaseClient):
+class DouClient(__BaseClient):
     def __init__(self):
         super().__init__()
         headers = {}

@@ -5,7 +5,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import Column, String, TEXT, Float
 
 from . import BaseModel
-from stone.common.clients import DouCLinet
+from stone.common.clients import DouClient
 from stone.config import get_config_obj
 
 config_obj = get_config_obj()
@@ -49,7 +49,7 @@ class Book(BaseModel):
         if book:
             return book
         book = cls()
-        client = DouCLinet()
+        client = DouClient()
         info = client.get_book_info_by_isnb(isnb=isbn)
         await book.__put_info_from_dou(info)
         return book
@@ -60,7 +60,7 @@ class Book(BaseModel):
         if book:
             return book
         book = cls()
-        client = DouCLinet()
+        client = DouClient()
         info = client.get_book_info_by_dou_id(dou_id)
         await book.__put_info_from_dou(info)
         return book
@@ -82,12 +82,12 @@ class Book(BaseModel):
         await self.save_images(info['images'])
 
     async def update_book_info(self):
-        client = DouCLinet()
+        client = DouClient()
         info = client.get_book_info_by_dou_id(self.dou_id)
         await self.__put_info_from_dou(info)
 
     async def save_images(self, images):
-        client = DouCLinet()
+        client = DouClient()
         small = images.get("small")
         sm = client.get_file(small)
         with open(self.get_image_path("small"), "wb") as file:

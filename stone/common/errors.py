@@ -19,7 +19,7 @@ class BaseError(Exception):
 
 class ClientError(BaseError):
 
-    def __init__(self, client_name, msg, error_code):
-        self.error_id = "{}_Error".format(client_name)
+    def __init__(self, msg, error_code):
+        self.error_id = "Third_Party_Dependent_Error"
         self.error_msg = msg
         self.error_code = error_code
