@@ -7,6 +7,7 @@
         width: 100%;
         z-index: -1;
         background-color: #cccccc;
+        padding-top: 50px;
     }
 </style>
 {% endblock %}
@@ -21,11 +22,11 @@
         <a href="/register" class="mdui-btn mdui-ripple">Register</a>
     </div>
 </div>
-<div id="particles"></div>
-<div class="mdui-container" style="padding-top: 80px;">
+<div class="mdui-container" style="padding-top: 95px;">
     {% block content%}
     {% endblock %}
 </div>
+<div id="particles"></div>
 <script src="/static/js/particles.min.js"></script>
 <script type="text/javascript">
     particlesJS("particles", {

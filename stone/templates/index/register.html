@@ -7,22 +7,30 @@
     </div>
     <div class="mdui-col-md-4 mdui-col-offset-md-4">
         <form method="POST" action="/register">
+            {{ form.csrf_token() }}
             <div class="mdui-textfield mdui-textfield-floating-label">
                 {{ form.email.label(class="mdui-textfield-label") }}
-                {{ form.email(class="mdui-textfield-input") }}
+                {{ form.email(class="mdui-textfield-input",type="email") }}
+                {% if form.errors.email %}
+                <small class="mdui-text-color-red-400">{{ form.errors.email[0] }}</small>
+                {% endif %}
             </div>
             <div class="mdui-textfield mdui-textfield-floating-label">
                 {{ form.password.label(class="mdui-textfield-label") }}
                 {{ form.password(class="mdui-textfield-input") }}
+                {% if form.errors.password %}
+                <small class="mdui-text-color-red-400">{{ form.errors.password[0] }}</small>
+                {% endif %}
             </div>
             <div class="mdui-textfield mdui-textfield-floating-label">
                 {{ form.re_password.label(class="mdui-textfield-label") }}
                 {{ form.re_password(class="mdui-textfield-input") }}
+                {% if form.errors.re_password %}
+                <small class="mdui-text-color-red-400">{{ form.errors.re_password[0] }}</small>
+                {% endif %}
             </div>
             <div class="mdui-col" style="padding: 40px 0">
-                <button class="mdui-btn mdui-btn-block mdui-btn-raised mdui-color-blue-a200 mdui-ripple">
-                    Register
-                </button>
+                {{ form.submit(class="mdui-btn mdui-btn-block mdui-btn-raised mdui-color-blue-a200 mdui-ripple") }}
             </div>
         </form>
     </div>
