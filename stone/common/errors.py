@@ -16,3 +16,10 @@ class BaseError(Exception):
             error_msg=self.error_msg,
         )
 
+
+class ClientError(BaseError):
+
+    def __init__(self, client_name, msg, error_code):
+        self.error_id = "{}_Error".format(client_name)
+        self.error_msg = msg
+        self.error_code = error_code
