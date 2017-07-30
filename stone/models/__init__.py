@@ -19,20 +19,15 @@ class Base(object):
     id = Column(String, default=lambda: str(uuid.uuid4()), primary_key=True)
     create_at = Column(DateTime, default=datetime.now)
     update_at = Column(DateTime, default=datetime.now, onupdate=datetime.now)
-    is_deleted = Column(Boolean, default=False, index=True)
-
-    @property
-    def query(self):
-        return db_session.query_property().filter_by(is_deleted=False)
-
-    def delete(self):
-        self.is_deleted = True
 
 
 BaseModel = declarative_base(bind=engine, cls=Base)
+BaseModel.query = db_session.query_property()
 
 
-async def init_db(drop=False):
+def init_db(drop=False):
+    from .user import User
+    from .book import tag_relationship, Book, Tag
     if drop:
-        Base.metadata.drop_all()
-    Base.metadata.create_all()
+        BaseModel.metadata.drop_all()
+    BaseModel.metadata.create_all()
