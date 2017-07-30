@@ -1,8 +1,9 @@
 import os
 import uuid
+from datetime import datetime
 from sqlalchemy import Table, ForeignKey, or_
 from sqlalchemy.orm import relationship
-from sqlalchemy import Column, String, TEXT, Float
+from sqlalchemy import Column, String, TEXT, Float, DateTime
 
 from . import BaseModel
 from stone.common.clients import DouClient
@@ -14,7 +15,8 @@ IMAGE_PATH = os.path.join(config_obj.DATA_PATH, "images")
 tag_relationship = Table(
     'tag_relationship', BaseModel.metadata,
     Column('tag_id', String(64), ForeignKey('tags.id')),
-    Column('book_id', String(64), ForeignKey('books.id'))
+    Column('book_id', String(64), ForeignKey('books.id')),
+    Column('bind_at', DateTime, default=datetime.now),
 )
 
 
