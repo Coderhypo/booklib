@@ -11,6 +11,9 @@ SERIALIZE = URLSafeSerializer(get_config_obj().SECRET_KEY, salt=get_config_obj()
 
 
 class User(BaseModel):
+    """
+    注册用户表，注册用户默认不从属任何图书馆（不是 member）
+    """
     __tablename__ = "users"
 
     username = Column(String(64))
@@ -38,7 +41,7 @@ class User(BaseModel):
     def token(self):
         data = {
             "user_id": self.id,
-            "salt": "".join(random.sample(string.digits + string.ascii_letters, 15)),
+            "salt": "".join(random.sample(string.digits + string.ascii_letters, 10)),
         }
         return SERIALIZE.dumps(data)
 

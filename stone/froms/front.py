@@ -30,4 +30,3 @@ class RegisterForm(SanicForm):
         if not user:
             return
         raise ValidationError("Email already exist.")
-

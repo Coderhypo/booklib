@@ -21,6 +21,10 @@ tag_relationship = Table(
 
 
 class Book(BaseModel):
+    """
+    图书表， 通过豆瓣 api 获得图书信息
+    图书表只记录图书的信息，不记录关系（图书馆藏书，用户借阅等）
+    """
     __tablename__ = "books"
 
     title = Column(String(256))
@@ -125,6 +129,9 @@ class Book(BaseModel):
 
 
 class Tag(BaseModel):
+    """
+    图书标签表
+    """
     __tablename__ = "tags"
 
     name = Column(String(128))

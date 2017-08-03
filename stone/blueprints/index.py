@@ -3,7 +3,7 @@ from sanic.response import redirect
 
 from stone.ext import jinja
 from stone.froms.front import LoginForm, RegisterForm
-from stone.services.user import create_user, get_username_by_email
+from stone.services.user import create_user, gen_username_by_email
 from stone.models.user import User
 
 index_blueprint = Blueprint("index")
@@ -39,7 +39,7 @@ async def register(request):
     form = RegisterForm(request)
     if form.validate_on_submit():
         user = await create_user(
-            get_username_by_email(form.email.data),
+            gen_username_by_email(form.email.data),
             form.email.data,
             form.password.data
         )
