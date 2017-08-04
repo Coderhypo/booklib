@@ -27,7 +27,7 @@ class __BaseClient(requests.Session):
 
         if code // 100 != 2:
             raise ClientError(
-                "can't get a response: status code {}".format(code), 500)
+                "can't get a response: status code {}".format(code))
         return rsp.content
 
 
@@ -37,7 +37,7 @@ class __BaseClient(requests.Session):
 
         if code // 100 != 2:
             raise ClientError(
-                "can't get a response: status code {}".format(code), 500)
+                "can't get a response: status code {}".format(code))
         if json:
             return rsp.json()
         return rsp.text

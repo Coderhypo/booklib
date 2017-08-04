@@ -14,3 +14,4 @@ def gen_username_by_email(email):
     username = (" ".join([w.capitalize() for w in username.split(".")]))
     return username
 
+

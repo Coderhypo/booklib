@@ -12,7 +12,7 @@ SERIALIZE = URLSafeSerializer(get_config_obj().SECRET_KEY, salt=get_config_obj()
 
 class User(BaseModel):
     """
-    注册用户表，注册用户默认不从属任何图书馆（不是 member）
+    注册用户表，注册用户默认不从属图书馆（不是 member）
     """
     __tablename__ = "users"
 
